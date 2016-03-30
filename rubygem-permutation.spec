@@ -4,7 +4,7 @@
 #
 Name     : rubygem-permutation
 Version  : 0.1.8
-Release  : 5
+Release  : 6
 URL      : https://rubygems.org/downloads/permutation-0.1.8.gem
 Source0  : https://rubygems.org/downloads/permutation-0.1.8.gem
 Summary  : No detailed summary available
@@ -31,17 +31,17 @@ gem spec %{SOURCE0} -l --ruby > rubygem-permutation.gemspec
 gem build rubygem-permutation.gemspec
 
 %install
-gem_dir=$(ruby -e'puts Gem.default_dir')
+%global gem_dir $(ruby -e'puts Gem.default_dir')
 gem install -V \
 --local \
 --force \
---install-dir .${gem_dir} \
+--install-dir .%{gem_dir} \
 --bindir .%{_bindir} \
 permutation-0.1.8.gem
 
-mkdir -p %{buildroot}${gem_dir}
-cp -pa .${gem_dir}/* \
-%{buildroot}${gem_dir}
+mkdir -p %{buildroot}%{gem_dir}
+cp -pa .%{gem_dir}/* \
+%{buildroot}%{gem_dir}
 
 if [ -d .%{_bindir} ]; then
 mkdir -p %{buildroot}%{_bindir}
@@ -49,58 +49,26 @@ cp -pa .%{_bindir}/* \
 %{buildroot}%{_bindir}/
 fi
 
+%check
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
+pushd %{buildroot}%{gem_dir}/gems/permutation-0.1.8
+popd
+
+
 %files
 %defattr(-,root,root,-)
-/usr/lib64/ruby/gems/2.2.0/cache/permutation-0.1.8.gem
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/%2a-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/%2d%40-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/%3c%3d%3e-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/%3d%3d-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/cdesc-Permutation.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/compose-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/cycles-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/each%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/each-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/eql%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/even%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/factorial-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/for-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/from_cycles-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/from_value-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/hash-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/invert%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/invert-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/last-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/next%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/next-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/odd%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/pred%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/pred-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/project-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/random%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/random-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/rank%3d-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/rank-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/rank_indices-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/sgn-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/signum-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/size-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/succ%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/succ-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/unrank_indices-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/Permutation/value-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/cache.ri
-/usr/lib64/ruby/gems/2.2.0/doc/permutation-0.1.8/ri/page-README.ri
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/CHANGES
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/COPYING
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/README
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/Rakefile
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/VERSION
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/examples/tsp.rb
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/install.rb
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/lib/permutation.rb
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/lib/permutation/version.rb
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/make_doc.rb
-/usr/lib64/ruby/gems/2.2.0/gems/permutation-0.1.8/test/test.rb
-/usr/lib64/ruby/gems/2.2.0/specifications/permutation-0.1.8.gemspec
+/usr/lib64/ruby/gems/2.3.0/cache/permutation-0.1.8.gem
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/CHANGES
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/COPYING
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/README
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/Rakefile
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/VERSION
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/examples/tsp.rb
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/install.rb
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/lib/permutation.rb
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/lib/permutation/version.rb
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/make_doc.rb
+/usr/lib64/ruby/gems/2.3.0/gems/permutation-0.1.8/test/test.rb
+/usr/lib64/ruby/gems/2.3.0/specifications/permutation-0.1.8.gemspec
