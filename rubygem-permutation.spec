@@ -4,7 +4,7 @@
 #
 Name     : rubygem-permutation
 Version  : 0.1.8
-Release  : 6
+Release  : 7
 URL      : https://rubygems.org/downloads/permutation-0.1.8.gem
 Source0  : https://rubygems.org/downloads/permutation-0.1.8.gem
 Summary  : No detailed summary available
